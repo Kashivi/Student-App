@@ -1,0 +1,273 @@
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f8f8;
+    --bg-tertiary: #f0f0f0;
+    --color-blue: #663399;
+    --color-purple: #663399;
+    --color-grey: #999999;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --border: #000000;
+    --accent: #663399;
+    --hover: #4B0082;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    line-height: 1.6;
+  }
+
+  .container-fluid {
+    flex: 1;
+    padding: 20px;
+    padding-top: 60px;
+  }
+
+  /* History panel styling */
+  .panel {
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--border);
+    position: fixed;
+    top: 20px;
+    left: -400px;
+    width: 350px;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+
+  .panel.active {
+    left: 80px;
+  }
+
+  .panel h3 {
+    color: var(--color-purple);
+    margin-top: 0;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+    position: relative;
+  }
+
+  .panel h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: var(--color-purple);
+    border-radius: 2px;
+  }
+
+  #history {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .history-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 8px;
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+  }
+
+  .history-item:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
+    border-left: 3px solid var(--color-purple);
+  }
+
+  .history-item:nth-child(even) {
+    background-color: var(--bg-secondary);
+  }
+
+  .history-item:nth-child(odd) {
+    background-color: var(--bg-primary);
+  }
+
+  /* Editor and output containers */
+  .editor-output-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: calc(100vh - 140px);
+  }
+  .editor-panel,
+  .output-panel {
+    flex: 1;
+  }
+
+  #editor {
+    width: 100%;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 15px;
+    color: var(--text-primary);
+    font-family: 'Courier New', monospace;
+    resize: none;
+    line-height: 1.5;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    min-height: 400px;
+  }
+
+  #editor:focus {
+    outline: none;
+    border-color: var(--color-purple);
+    box-shadow: 0 0 0 2px rgba(102, 51, 153, 0.2);
+  }
+
+  button {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  #runBtn {
+    background-color: var(--color-purple);
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 51, 153, 0.3);
+    align-self: flex-start;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+  }
+
+  #runBtn:hover {
+    background-color: var(--hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 51, 153, 0.4);
+  }
+
+  #runBtn:active {
+    transform: translateY(1px);
+  }
+
+  #language {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+    padding: 6px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 120px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='292.4' height='292.4'%3E%3Cpath fill='%23000000' d='M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.2c0 5 1.8 9.3 5.4 12.9l128 127.9c3.6 3.6 7.8 5.4 12.8 5.4s9.2-1.8 12.8-5.4L287 95c3.5-3.5 5.4-7.8 5.4-12.8 0-5-1.9-9.2-5.5-12.8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px top 50%;
+    background-size: 12px auto;
+  }
+
+  #language:focus {
+    outline: none;
+    border-color: var(--color-purple);
+    box-shadow: 0 0 0 2px rgba(102, 51, 153, 0.2);
+  }
+
+  #output {
+    color: var(--text-primary);
+    font-family: 'Courier New', monospace;
+    padding: 15px;
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    min-height: 400px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .controls label {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  /* Mobile toggle buttons for Code and Output views */
+  .toggle-buttons {
+    display: none;
+    margin-bottom: 15px;
+  }
+
+  .toggle-buttons button {
+    flex: 1;
+    padding: 10px;
+    background-color: var(--color-purple);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    margin: 0.8rem;
+  }
+
+  .toggle-buttons button.active {
+    background-color: var(--hover);
+  }
+
+  /* History icon styling */
+  .history-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--color-purple);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1001;
+    box-shadow: 0 4px 12px rgba(102, 51, 153, 0.3);
+    transition: background-color 0.3s ease;
+  }
+
+  .history-icon:hover {
+    background-color: var(--hover);
+  }
+
+  .CodeMirror {
+    height: 80vh !important;
+  }
+
+  /* Responsive adjustments for mobile devices */
+  @media (max-width: 768px) {
+    .editor-output-container {
+      flex-direction: column;
+      height: auto;
+    }
+    /* Show toggle buttons on mobile */
+    .toggle-buttons {
+      display: flex;
+    }
+    /* Hide output panel initially on mobile */
+    .editor-panel, .output-panel {
+      display: none;
+    }
+    .editor-panel.active,
+    .output-panel.active {
+      display: block;
+    }
+  }

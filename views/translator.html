@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Language Translator</title>
+  <link rel="icon" href="/images/favicon.png">
+  <link rel="stylesheet" href="/css/translator.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Language Translator</h1>
+    </div>
+
+    <div class="label">Enter text</div>
+    <div class="text-box-container">
+      <textarea class="text-area" id="input-text" placeholder="Type text to translate..."></textarea>
+      <div class="controls">
+        <button class="control-button speaker-button" id="input-speak">
+          <!-- Speaker Icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.54 8.46C16.477 9.398 17.004 10.669 17.004 11.995C17.004 13.321 16.477 14.592 15.54 15.53" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.07 5.93C20.945 7.805 21.998 10.345 21.998 13C21.998 15.655 20.945 18.195 19.07 20.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="language-controls">
+      <div class="language-dropdown">
+        <select class="language-select" id="from-language">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="it">Italian</option>
+          <option value="pt">Portuguese</option>
+          <option value="ru">Russian</option>
+          <option value="zh">Chinese</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+          <option value="ar">Arabic</option>
+          <option value="hi">Hindi</option>
+        </select>
+        <div class="dropdown-arrow">▼</div>
+      </div>
+
+      <button class="switch-button" id="switch-languages">
+        <!-- Switch Icon -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M7 16L3 12M3 12L7 8M3 12H21M17 8L21 12M21 12L17 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="language-dropdown">
+        <select class="language-select" id="to-language">
+          <option value="en">English</option>
+          <option value="es" selected>Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="it">Italian</option>
+          <option value="pt">Portuguese</option>
+          <option value="ru">Russian</option>
+          <option value="zh">Chinese</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+          <option value="ar">Arabic</option>
+          <option value="hi">Hindi</option>
+        </select>
+        <div class="dropdown-arrow">▼</div>
+      </div>
+    </div>
+
+    <button class="translate-button" id="translate-button">
+      <!-- Translate Icon -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M5 8L10 13L5 18M14 8H19M14 12H19M14 16H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Translate
+    </button>
+
+    <div class="label">Translation</div>
+    <div class="text-box-container">
+      <textarea class="text-area" id="output-text" readonly placeholder="Translation will appear here..."></textarea>
+      <div class="controls">
+        <button class="control-button copy-button" id="copy-button">
+          <!-- Copy Icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M8 7V15C8 15.53 8.211 16.039 8.586 16.414C8.961 16.789 9.47 17 10 17H18C18.53 17 19.039 16.789 19.414 16.414C19.789 16.039 20 15.53 20 15V7C20 6.47 19.789 5.961 19.414 5.586C19.039 5.211 18.53 5 18 5H10C9.47 5 8.961 5.211 8.586 5.586C8.211 5.961 8 6.47 8 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="control-button speaker-button" id="output-speak">
+          <!-- Speaker Icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.54 8.46C16.477 9.398 17.004 10.669 17.004 11.995C17.004 13.321 16.477 14.592 15.54 15.53" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.07 5.93C20.945 7.805 21.998 10.345 21.998 13C21.998 15.655 20.945 18.195 19.07 20.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div id="pronunciation" class="pronunciation-text"></div>
+      <button id="pronunciation-speak">🔈 Speak Pronunciation</button>
+
+    </div>
+  </div>
+
+<script src ="/js/translator.js"></script>
+</body>
+</html>
